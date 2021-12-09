@@ -1,0 +1,78 @@
+# \u6570\u636E\u6E90
+spring:
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/interview?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: 123456
+      initial-size: 10
+      max-active: 50
+      min-idle: 10
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+  redis:
+    host: 192.168.182.135
+    port: 6379
+    database: 0
+    lettuce:
+      pool:
+        max-active: 20  #最大连接数，负值表示没有限制，默认8
+        max-wait: -1    #最大阻塞等待时间，负值表示没限制，默认-1
+        max-idle: 8     #最大空闲连接，默认8
+        min-idle: 0     #最小空闲连接，默认0
+  rabbitmq:
+    host: 192.168.182.136
+    port: 5672
+    username: cs2101
+    password: cs2101
+    virtual-host: cs2101
+  application:
+    name: oss-service   #
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# mybatis\u3000\u76F8\u5173\u3000\uFF58\uFF4D\uFF4C\u6587\u4EF6\u5728\u54EA\u91CC\u3000\u9A7C\u5CF0\u3000\u3000\u5206\u9875\u63D2\u4EF6\u3000\u6253\u5370\uFF53\uFF51\uFF4C\u8BED\u53E5\u7684\u65E5\u5FD7
+mybatis:
+  # \u626B\u63CF\u6620\u5C04\u6587\u4EF6
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # \u5F00\u542F\u9A7C\u5CF0\u6620\u5C04\u914D\u7F6E
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  auto-dialect:
+
+
+# \u6253\u5370sqk
+logging:
+  level:
+    com.csqf.mapper: debug
+
+server:
+  port: 8989
+
+config:
+  jwt:
+    secret: ashdjakhsdhaslkdhalsjdlasjdlaksjdlkasjdlasjdlkasdjlasjdaslkdjasl1
+    expire: 600
+  oss:
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    keyid: LTAI5tERmWoGMJKEM9QsaeRF
+    keysecret: rY31xnxRPi0fOhw7oczComiAvQOcSM
+    #bucket可以在控制台创建，也可以使用java代码创建
+    bucketname: csqf001
+#  sms:
+#    accessKeyId: LTAI5tK3d5m7G5wbrvjK2Y7D
+#    accessSecret: q5TZs5NTIkHuzZbPxiSn4NUe98fklt
+#    signName: 扩新
+#    regionId: cn-shenzhen
+#    sysDomain: dysmsapi.aliyuncs.com

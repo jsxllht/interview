@@ -1,0 +1,27 @@
+server:
+  port: 9020
+
+#数据源
+spring:
+  rabbitmq:
+    host: 192.168.182.136
+    port: 5672
+    username: cs2101
+    password: cs2101
+    virtual-host: cs2101
+# oss 配置
+config:
+  oss:
+    endpoint: oss-cn-shenzhen.aliyuncs.com
+    keyid: LTAI5tERmWoGMJKEM9QsaeRF
+    keysecret: rY31xnxRPi0fOhw7oczComiAvQOcSM
+    #bucket可以在控制台创建，也可以使用java代码创建
+    bucketname: csqf001
+
+ribbon:
+  NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+  ConnectTimeout: 3000 #连接建立的超时时长，默认1秒
+  ReadTimeout: 2000 #处理请求的超时时间，默认为1秒
+  MaxAutoRetries: 0 # 同一实例最大重试次数，不包括首次调用，默认0
+  MaxAutoRetriesNextServer: 1 # 重试其他实例的最大重试次数，不包括首次所选的server，默认1
+  OkToRetryOnAllOperations: false # true 所有请求都会重试   false 只在get 时候重试
